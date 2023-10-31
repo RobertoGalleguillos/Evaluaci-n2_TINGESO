@@ -21,7 +21,7 @@ export default function Home(){
                         </div>
                     </div>
                     <div class="single-box">
-                        <a href="/">
+                        <a href="/estudiantes">
                             <div class="img-area">
                             </div>
                         </a>
