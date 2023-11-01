@@ -30,7 +30,7 @@ export default function Home(){
                         </div>
                     </div>
                     <div class="single-box">
-                        <a href="/">
+                        <a href="/escoger-estudiante-cuota">
                             <div class="img-area"></div>
                         </a>
                         <div class="img-text">

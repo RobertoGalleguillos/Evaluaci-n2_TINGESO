@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function NavbarComponent(){
+function NavbarComponent2(){
     return(
         <>
         <NavStyle>
@@ -11,14 +11,13 @@ function NavbarComponent(){
                 </div>
                 <nav>
                 </nav>
-                <a class="btn" href="/"><button>Volver</button></a>
             </header>
             </NavStyle>
         </>
     )
 }
 
-export default NavbarComponent;
+export default NavbarComponent2;
 
 
 const NavStyle = styled.nav`
