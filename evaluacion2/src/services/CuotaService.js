@@ -22,6 +22,10 @@ class CuotaService {
           }
         });
       }
+
+      PagarCuota(id){
+        return axios.get(`http://localhost:8080/cuota/pagar_cuota/`+id);
+      }
 }
 
 export default new CuotaService();

@@ -10,6 +10,7 @@ function NavbarComponent2(){
                     <h1>TopEducation</h1>
                 </div>
                 <nav>
+                    <a class="btn" href="/estudiantes-con-cuotas"><button>Volver</button></a>
                 </nav>
             </header>
             </NavStyle>
