@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import NavbarComponent from "./Navbar2Component";
 import styled from "styled-components";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from "react-router-dom";
 import CuotaService from "../services/CuotaService";
+import swal from 'sweetalert';
 
 function formatDate(date) {
   const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
@@ -15,7 +15,7 @@ function VerCuotasComponent() {
     const { rut } = useParams();
   const [cuotas, setCuotas] = useState([]);
   const [selectedCuota, setSelectedCuota] = useState(null);
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     fetch("http://localhost:8080/cuota/rut/" + rut)
@@ -30,8 +30,35 @@ function VerCuotasComponent() {
   }, []);
 
   const handleSelectCuota = (cuota) => {
-    setSelectedCuota(cuota);
-  };
+  CuotaService.PagarCuota(cuota.id)
+    .then((paymentResult) => {
+      if (paymentResult.data === 'Cuota pagada') {
+        setSelectedCuota(cuota);
+        swal({
+          title: 'Pago Exitoso',
+          text: 'El pago se ha realizado con éxito.',
+          icon: 'success',
+        }).then(() => {
+          window.location.reload();
+        });
+      } else {
+        swal({
+          title: 'No se pudo realizar el pago de la cuota',
+          text: 'No se cumple con la fecha permitida para pagar la cuota, por favor vuelva a intentarlo entre los días 5 a 10 de cada mes.',
+          icon: 'warning',
+        }).then(() => {
+        });
+      }
+    })
+    .catch((error) => {
+      console.error('Error al procesar el pago:', error);
+      swal({
+        title: 'Error',
+        text: 'Hubo un error al procesar el pago',
+        icon: 'error',
+      });
+    });
+};
 
   return (
     <div className="home">
@@ -56,7 +83,7 @@ function VerCuotasComponent() {
             </thead>
             <tbody>
               {cuotas.map((cuota) => (
-                <tr key={cuota.rut}>
+                <tr key={cuota.id}>
                   <td>{cuota.rut}</td>
                   <td>${cuota.montoCuota}</td>
                   <td>{formatDate(cuota.fechaVencimiento)}</td>
@@ -91,7 +118,6 @@ function VerCuotasComponent() {
             </tbody>
           </table>
         </div>
-        {selectedCuota}
       </Styles>
     </div>
   );
