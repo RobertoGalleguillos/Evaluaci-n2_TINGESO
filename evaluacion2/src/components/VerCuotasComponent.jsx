@@ -113,7 +113,7 @@ function VerCuotasComponent() {
                             Pagar
                         </Button>
                         )}
-                    </td>
+                  </td>
                 </tr>))}
             </tbody>
           </table>
