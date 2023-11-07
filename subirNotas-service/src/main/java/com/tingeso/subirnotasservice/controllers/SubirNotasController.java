@@ -43,10 +43,10 @@ public class SubirNotasController {
             subirNotasService.revisarIntereses();
             ArrayList<SubirNotasEntity> notas = subirNotasService.obtenerData();
             subirNotasService.eliminarData(notas);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok("Descuentos calculados con exito");
         }
         else{
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.ok("No se puede calcular descuentos en esta fecha");
         }
     }
 }

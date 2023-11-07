@@ -166,7 +166,7 @@ const Styles = styled.div`
 }
 
 .home{
-    background-color: #006992;
+    background-color: #fff;
     margin: 0;
     padding: 0;
 }

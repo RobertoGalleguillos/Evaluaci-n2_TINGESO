@@ -1,0 +1,134 @@
+cd config-service
+mvn clean install -DskipTests=True
+docker build -t robertogalleguillos/topeducation-config-backend .
+docker push robertogalleguillos/topeducation-config-backend
+cd ../
+
+cd eureka-service
+mvn clean install -DskipTests=True
+docker build -t robertogalleguillos/topeducation-eureka-backend .
+docker push robertogalleguillos/topeducation-eureka-backend
+cd ../
+
+cd gateway-service
+mvn clean install -DskipTests=True
+docker build -t robertogalleguillos/topeducation-gateway-backend .
+docker push robertogalleguillos/topeducation-gateway-backend
+cd ../
+
+cd estudiante-service
+mvn clean install -DskipTests=True
+docker build -t robertogalleguillos/topeducation-estudiantes-backend .
+docker push robertogalleguillos/topeducation-estudiantes-backend
+cd ../
+
+cd cuota-service
+mvn clean install -DskipTests=True
+docker build -t robertogalleguillos/topeducation-cuotas-backend .
+docker push robertogalleguillos/topeducation-cuotas-backend
+cd ../
+
+cd subirNotas-service
+mvn clean install -DskipTests=True
+docker build -t robertogalleguillos/topeducation-notas-backend .
+docker push robertogalleguillos/topeducation-notas-backend
+cd ../
+
+cd evaluacion2
+docker build -t robertogalleguillos/kubernetes-frontend .
+docker push robertogalleguillos/kubernetes-frontend
+cd ../
+
+
+---------------------------------------------------------
+
+
+minikube start
+minikube status
+
+cd minikube
+
+kubectl apply -f frontend-deployment-service.yml
+
+kubectl apply -f mysql-secrets.yml
+kubectl apply -f mysql-configmap.yml
+kubectl apply -f mysql-dp-sv-pvc.yml
+
+kubectl apply -f config-deployment-service.yml
+kubectl apply -f eureka-deployment-service.yml
+
+kubectl apply -f estudiantes-deployment-service.yml
+kubectl apply -f cuotas-deployment-service.yml
+kubectl apply -f gateway-deployment-service.yml
+
+
+---------------------------------------------------------
+
+kubectl delete deployments frontend-deployment
+kubectl delete services frontend-service
+
+kubectl delete deployments mysql
+kubectl delete services mysql
+kubectl delete PersistentVolumeClaims mysql-persistent-volume-claim
+kubectl delete PersistentVolumes mysql-persistent-volume-claim
+
+kubectl delete ConfigMap mysql-config-map
+
+kubectl delete Secret mysql-credentials
+kubectl delete Secret mysql-root-credentials
+
+kubectl delete deployments config-deployment
+kubectl delete services config-service
+
+kubectl delete deployments eureka-deployment
+kubectl delete services eureka-service
+
+kubectl delete deployments gateway-deployment
+kubectl delete services gateway-service
+
+kubectl delete deployments estudiantes-deployment
+kubectl delete services estudiante-service
+
+kubectl delete deployments cuotas-deployment
+kubectl delete services cuota-service
+
+kubectl delete deployments subirNotas-deployment
+kubectl delete services subirNotas-service
+
+
+
+---------------------------------------------------------
+
+
+kubectl get pods
+kubectl get services
+kubectl get deployments
+kubectl get persistentvolumeclaims
+kubectl get persistentvolume
+kubectl get configmaps
+kubectl get secrets
+
+kubectl get all
+
+kubectl logs <Name pods>
+kubectl logs <Name pods> -f
+
+kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
+
+kubectl exec -it <Nombre pod MYSQL> bash -- mysql -h root -U root
+kubectl exec -it <Nombre pod MYSQL> -- mysql -usimon -psimon
+
+CREATE USER 'simon'@'localhost' IDENTIFIED BY 'simon';
+grant all privileges on *.* to 'simon'@'localhost';
+
+CREATE DATABASE topeducationcuotas;
+CREATE DATABASE topeducationestudiantes;
+
+Para visualizar las base de datos
+SHOW DATABASES;
+
+minikube service frontend-service
+minikube tunnel
+
+// Este comando es para abrir una pagina que permite visualizar los pods, services entre otras cosas
+minikube dashboard

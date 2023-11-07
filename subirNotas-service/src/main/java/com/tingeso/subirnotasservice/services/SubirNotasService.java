@@ -241,6 +241,10 @@ public class SubirNotasService {
         int sumaPuntajes = estudiante.getSumaPuntajes();
         sumaPuntajes += promedio;
         estudiante.setSumaPuntajes(sumaPuntajes);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<EstudianteModel> requestEntity = new HttpEntity<>(estudiante, headers);
+        restTemplate.postForEntity("http://estudiante-service/estudiante", requestEntity, Void.class);
         promedio = promedio / 4;
         return promedio;
     }

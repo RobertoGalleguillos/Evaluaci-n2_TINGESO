@@ -10,7 +10,7 @@ spring:
       uri: http://localhost:8081
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/subirnotas?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/subir_notas?autorReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: Ragc2806
   jpa:

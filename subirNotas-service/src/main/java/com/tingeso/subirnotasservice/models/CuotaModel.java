@@ -11,6 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class CuotaModel {
+    private Long id;
     private String rut;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaVencimiento;

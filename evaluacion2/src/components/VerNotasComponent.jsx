@@ -160,7 +160,6 @@ const Styles = styled.div`
     }
 
     .cargar-button {
-        background-color: #009879;
         border: none;
         width: auto;
     }

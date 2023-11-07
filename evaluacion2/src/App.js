@@ -8,6 +8,8 @@ import EstudiantesConCuotasComponent from './components/EstudiantesConCuotasComp
 import VerCuotasComponent from './components/VerCuotasComponent';
 import SubirNotasComponent from './components/SubirNotasComponent';
 import VerNotasComponent from './components/VerNotasComponent';
+import EstudiantesParaResumenComponent from './components/EstudiantesParaResumenComponent'
+import VerResumenComponent from './components/VerResumenComponent';
 function App() {
   return (
     <div>
@@ -21,6 +23,8 @@ function App() {
         <Route path="/ver-cuotas/:rut" element={<VerCuotasComponent />} />
         <Route path="/subir-notas" element={<SubirNotasComponent />} />
         <Route path="/ver-notas" element={<VerNotasComponent />} />
+        <Route path="/estudiantes-para-resumen" element={<EstudiantesParaResumenComponent />} />
+        <Route path="/ver-resumen/:id" element={<VerResumenComponent />} />
 
       </Routes>
     </BrowserRouter>

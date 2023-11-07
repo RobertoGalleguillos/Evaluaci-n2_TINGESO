@@ -10,10 +10,10 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "data")
+@Table(name = "notas")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class SubirNotasEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cuotas-deployment
+  labels:
+    app: cuotas-deployment
+spec:
+  selector:
+    matchLabels:
+      app: cuotas-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: cuotas-deployment
+    spec:
+      containers:
+        - name: topeducation-cuotas-backend
+          image: robertogalleguillos/topeducation-cuotas-backend:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-service:8081
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://eureka-service:8761
+            - name: eureka.instance.preferIpAddress
+              value: "true"
+            - name: MYSQL_DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config-map
+                  key: MYSQL_DB_HOST
+            - name: MYSQL_DB_CUOTAS
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config-map
+                  key: MYSQL_DB_CUOTAS
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: MYSQL_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cuota-service
+  labels:
+    app: cuota-service
+spec:
+  selector:
+    app: cuotas-deployment
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+  type: LoadBalancer

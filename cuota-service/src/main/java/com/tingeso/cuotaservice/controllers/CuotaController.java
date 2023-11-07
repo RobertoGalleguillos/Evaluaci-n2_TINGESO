@@ -69,7 +69,9 @@ public class CuotaController {
             return ResponseEntity.noContent().build();
         }
         if(cuotaService.existeCuota(estudiante.getRut())){
-            return ResponseEntity.ok("Ya se generaron cuotas para este estudiante");
+            Map<String, Object> response = new HashMap<>();
+            response.put("existenCuotas", true);
+            return ResponseEntity.ok(response);
         }
         int descuento = cuotaService.descuentoMontoCuotas(estudiante);
         int cantidadMaxCuotas = cuotaService.cantidadMaxCuotas(estudiante);

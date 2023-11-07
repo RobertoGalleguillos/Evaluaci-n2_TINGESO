@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { createGlobalStyle } from 'styled-components'
+import NavbarComponent from "./NavbarHomeComponent";
 
 
 export default function Home(){
@@ -9,7 +10,7 @@ export default function Home(){
         <div>
             <GlobalStyle />
             <HomeStyle>
-                <h1 className="text-center"> <b>TopEducation</b></h1>
+            <NavbarComponent />
                 <div class="box-area">
                     <div class="single-box">
                         <a href="/register">
@@ -64,7 +65,7 @@ export default function Home(){
                         </div>
                     </div>
                     <div class="single-box">
-                        <a href="/">
+                        <a href="/estudiantes-para-resumen">
                             <div class="img-area"></div>
                         </a>
                         <div class="img-text">
@@ -81,7 +82,7 @@ export default function Home(){
 
 const GlobalStyle = createGlobalStyle`
     body { 
-        background-color: #262626;
+        background-color: #fff;
 `
 const HomeStyle = styled.nav`
 
@@ -108,7 +109,7 @@ const HomeStyle = styled.nav`
     width: 400px;
     height: auto;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: #e5e7e9;
     text-align: center;
     margin: 20px;
     padding: 20px;

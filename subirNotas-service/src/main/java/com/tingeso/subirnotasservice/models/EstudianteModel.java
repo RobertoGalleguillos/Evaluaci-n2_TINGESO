@@ -11,6 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class EstudianteModel {
+    private Long id;
     private String rut;
     private String apellidos;
     private String nombres;
