@@ -7,7 +7,7 @@ metadata:
 data:
   MYSQL_DB_HOST: mysql
   #base de dato Estudiantes
-  MYSQL_DB_ESTUADIANTES: estudiante
+  MYSQL_DB_ESTUDIANTES: estudiante
   #base de dato Cuotas
   MYSQL_DB_CUOTAS: cuota
   #base de dato Subir Notas
