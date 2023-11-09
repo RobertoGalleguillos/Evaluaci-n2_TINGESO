@@ -116,7 +116,7 @@ kubectl logs <Name pods> -f
 
 kubectl port-forward <nombre-pod> <puerto-local>:<puerto-contenedor>
 
-kubectl exec -it <Nombre pod MYSQL> -- mysql -uroot -proot
+kubectl exec -it <Nombre pod MYSQL> -- mysql -uroot -pRagc2806
 kubectl exec -it <Nombre pod MYSQL> -- mysql -uroberto -proberto
 
 CREATE USER 'roberto'@'localhost' IDENTIFIED BY 'roberto';
@@ -132,5 +132,7 @@ SHOW DATABASES;
 minikube service frontend-service
 minikube tunnel
 
-// Este comando es para abrir una pagina que permite visualizar los pods, services entre otras cosas
 minikube dashboard
+
+kubectl port-forward service/gateway-service 8080:8080
+kubectl port-forward service/frontend-service 3000:3000
