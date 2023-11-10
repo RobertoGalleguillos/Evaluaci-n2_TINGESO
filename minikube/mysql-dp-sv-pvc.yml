@@ -79,6 +79,11 @@ spec:
                 configMapKeyRef:
                   name: mysql-config-map
                   key: MYSQL_DB_ESTUDIANTES
+            - name: MYSQL_DB_NOTAS
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config-map
+                  key: MYSQL_DB_NOTAS
           volumeMounts:
               - mountPath: /var/lib/mysql
                 name: db-data
